@@ -10,7 +10,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, BASE_PATH } from "@/lib/utils";
 import { profile } from "@/data/profile";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -129,7 +129,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />
           <a
-            href={profile.resumeFile}
+            href={`${BASE_PATH}${profile.resumeFile}`}
             download
             className="inline-flex items-center gap-2 rounded-md border border-line-bright px-3.5 py-2 text-sm text-fg-mid transition-all duration-200 hover:border-accent hover:text-fg cursor-pointer"
           >
@@ -198,7 +198,7 @@ export function Navbar() {
               ))}
               <li className="mt-2 border-t border-line pt-3">
                 <a
-                  href={profile.resumeFile}
+                  href={`${BASE_PATH}${profile.resumeFile}`}
                   download
                   onClick={closeMenu}
                   className="flex items-center gap-2 rounded-md px-3 py-3 text-base text-fg-mid hover:text-fg transition-colors"

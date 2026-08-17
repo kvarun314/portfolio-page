@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
+import { BASE_PATH } from "@/lib/utils";
 import { NetworkGraph } from "./NetworkGraph";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -76,7 +77,7 @@ export function Hero() {
             />
           </a>
           <a
-            href={profile.resumeFile}
+            href={`${BASE_PATH}${profile.resumeFile}`}
             download
             className="inline-flex items-center gap-2 rounded-md border border-line-bright px-5 py-3 text-sm font-medium text-fg-mid transition-all duration-200 hover:border-accent hover:text-fg cursor-pointer"
           >

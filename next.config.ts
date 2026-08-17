@@ -1,44 +1,18 @@
 import type { NextConfig } from "next";
+import { BASE_PATH } from "./lib/utils";
 
-// Conservative CSP: everything self-hosted; inline script/style allowances
-// are required by Next.js hydration and the pre-paint theme script.
-const csp = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
-  "font-src 'self'",
-  "connect-src 'self'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-].join("; ");
-
+// GitHub Pages is static hosting with no server, so custom HTTP response
+// headers (CSP, HSTS, X-Frame-Options, etc.) can't be served — headers()
+// is a no-op under output: "export". GitHub Pages does enforce HTTPS/HSTS
+// on *.github.io itself. A best-effort CSP is set via <meta> in layout.tsx
+// instead, since that's the only one of these with a meta-tag equivalent.
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath: BASE_PATH,
+  assetPrefix: BASE_PATH,
+  trailingSlash: true,
   turbopack: {
     root: __dirname,
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "Content-Security-Policy", value: csp },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
-          },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-        ],
-      },
-    ];
   },
 };
 

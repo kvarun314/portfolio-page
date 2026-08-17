@@ -4,6 +4,7 @@ import { profile } from "@/data/profile";
 export const alt = `${profile.name} — ${profile.title}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
 
 // Static OG card in the site's dark palette, rendered at build time.
 export default function OpenGraphImage() {
