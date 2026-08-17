@@ -37,14 +37,16 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem:
-        "Amazon-seller clients lose money to fee discrepancies buried across thousands of invoices, and verifying them by hand across 72 accounts every month doesn't scale — it's slow, inconsistent, and easy to miss real recovery opportunities.",
+        "Amazon-seller clients lose money to fee discrepancies buried across thousands of invoices, and verifying them by hand across 72 accounts every month doesn't scale — it's slow, inconsistent, and easy to miss real recovery opportunities. That got harder when Flywheel's third-party data partner, Yimian, ended its partnership: the cooperative and supply-chain audit reports that depended on that feed had no replacement, and dashboards were at risk of going dark.",
       approach:
-        "Authored Python audit logic to detect fee discrepancies in seller invoices and standardise fee-recovery calculations across accounts, with Selenium automation sourcing 1,000+ invoice downloads per run across clients and regions. Built Snowflake pipelines feeding operational dashboards with refreshed metrics and configurable alerts, then designed and deployed end-to-end automation for 8 fee-recovery reports (including cooperative audit calculations) on AWS EKS. Integrated the backend APIs with dashboard microservices and React components so ops teams could act on the findings directly, and added S3-backed data download workflows via Retool for analyst self-service.",
+        "Authored Python audit logic to detect fee discrepancies in seller invoices and standardise fee-recovery calculations across accounts, with Selenium automation sourcing 1,000+ invoice downloads per run across clients and regions. Built Snowflake pipelines feeding operational dashboards with refreshed metrics and configurable alerts, then designed and deployed end-to-end automation for 8 fee-recovery reports on AWS EKS. When Yimian's data feed went away, extended the same Selenium automation — parameterized by date range — to source cooperative (coop) and supply-chain audit reports directly, and built a standalone scheduled service to run and calculate them monthly in-house, replacing the lost external dependency. For coop reports specifically, that service sits behind Retool: analysts trigger a run and pull the resulting file straight from S3, entirely through Retool, without touching the service directly. Integrated the backend APIs with dashboard microservices and React components so ops teams could act on the findings directly.",
       pipeline: [
-        "Selenium — invoice sourcing (1,000+ / run)",
+        "Selenium — invoice & report sourcing (date-range parameterized)",
+        "Scheduled service — coop & supply-chain audit automation",
         "Python — audit logic & discrepancy detection",
         "Snowflake — pipelines & alerting",
         "AWS EKS / ECS — automated report deployment",
+        "Retool + S3 — trigger & self-service download (coop)",
         "React dashboards — insights across 72 accounts",
       ],
       technologies: [
@@ -60,11 +62,14 @@ export const projects: Project[] = [
       results: [
         "Automated 8 fee-recovery reports end-to-end on AWS EKS, eliminating manual processing.",
         "Surfaced insights across 72 client accounts monthly, informing roughly 10 new recovery opportunities per month projected at $10K–100K+ per client depending on invoice volume.",
+        "Replaced a departing third-party data partner (Yimian) with an in-house scheduled service for coop and supply-chain audit reports, keeping dashboards and audits running with no reporting gap.",
+        "Abstracted the coop report workflow behind Retool — analysts trigger runs and pull files from S3 entirely through Retool, no direct service access needed.",
         "Built S3-backed data download workflows via Retool, improving analyst self-service and cutting data-access latency.",
         "Automated data generation and verification pipelines on AWS ECS, improving deployment reliability and shortening release cycles.",
       ],
       learnings: [
         "Standardising audit logic once and running it across every account catches discrepancies that ad-hoc, per-client checks miss.",
+        "Losing a third-party data dependency mid-flight is a real operational risk — building the replacement as a standalone scheduled service kept it decoupled from the rest of the pipeline and easy to swap in under pressure.",
         "Pairing a backend automation pipeline with a self-service dashboard turns a one-off analyst task into a repeatable operational process.",
         "Deploying on managed orchestration (EKS/ECS) rather than ad-hoc scripts made the pipeline reliable enough to run unattended every month.",
       ],
