@@ -63,8 +63,12 @@ export const skillCategories: SkillCategory[] = [
       "pandas",
       "NumPy",
       "Scikit-learn",
+      "PyTorch",
+      "TensorFlow",
       "Keras",
       "OpenCV",
+      "CNNs",
+      "YOLO",
       "Statistical Modelling",
       "Semantic Segmentation",
     ],
@@ -75,6 +79,7 @@ export const skillCategories: SkillCategory[] = [
     label: "GenAI & LLMOps",
     skills: [
       "LLMs",
+      "Transformers",
       "RAG",
       "FAISS",
       "Chroma",
@@ -89,7 +94,7 @@ export const skillCategories: SkillCategory[] = [
 ];
 
 export const domains = [
-  "Backend Development",
+  "Full-Stack Development",
   "Data Engineering",
   "Workflow Automation",
   "Data Science",
