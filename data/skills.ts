@@ -1,0 +1,98 @@
+export type SkillCategory = {
+  key: string;
+  label: string;
+  skills: string[];
+  /** keys of related categories, used for hover cross-highlighting */
+  related: string[];
+};
+
+export const skillCategories: SkillCategory[] = [
+  {
+    key: "tools",
+    label: "Full-Stack Engineering",
+    skills: [
+      "Java",
+      "Scala",
+      "JavaScript",
+      "TypeScript",
+      "Flask",
+      "Spring Boot",
+      "React.js",
+      "Selenium",
+      "Retool",
+      "Camunda",
+      "Docker",
+      "Kubernetes",
+      "Git",
+      "CI/CD",
+      "Linux",
+      "Agile/Scrum",
+    ],
+    related: ["dataeng"],
+  },
+  {
+    key: "dataeng",
+    label: "Data Engineering",
+    skills: [
+      "Snowflake",
+      "AWS EMR",
+      "AWS S3",
+      "AWS Lambda",
+      "AWS SQS",
+      "AWS EKS",
+      "AWS ECS",
+      "Apache Kafka",
+      "SQL Query Optimisation",
+      "ETL Pipelines",
+    ],
+    related: ["databases", "ds"],
+  },
+  {
+    key: "databases",
+    label: "Databases",
+    skills: ["Snowflake", "MySQL", "PostgreSQL", "Vector Databases"],
+    related: ["dataeng", "genai"],
+  },
+  {
+    key: "ds",
+    label: "Data Science & ML",
+    skills: [
+      "Python",
+      "SQL",
+      "R",
+      "pandas",
+      "NumPy",
+      "Scikit-learn",
+      "Keras",
+      "OpenCV",
+      "Statistical Modelling",
+      "Semantic Segmentation",
+    ],
+    related: ["genai", "dataeng"],
+  },
+  {
+    key: "genai",
+    label: "GenAI & LLMOps",
+    skills: [
+      "LLMs",
+      "RAG",
+      "FAISS",
+      "Chroma",
+      "Pinecone",
+      "Grounding DINO",
+      "SAM/SAM2",
+      "Zero-Shot Inference",
+      "Prompt Engineering",
+    ],
+    related: ["ds", "databases"],
+  },
+];
+
+export const domains = [
+  "Backend Development",
+  "Data Engineering",
+  "Workflow Automation",
+  "Data Science",
+  "Computer Vision",
+  "Generative AI",
+];
