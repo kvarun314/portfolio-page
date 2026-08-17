@@ -23,7 +23,7 @@ function MetaBlock({ label, items }: { label: string; items: readonly string[] }
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-5 md:px-8 py-24 md:py-32">
-      <SectionHeading index="01" eyebrow="ABOUT" title="Engineer by trade, AI/ML by pursuit" />
+      <SectionHeading index="01" eyebrow="ABOUT" title="Engineer by trade, Data Scientist by passion" />
 
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
         <Reveal>
