@@ -28,7 +28,13 @@ export const skillCategories: SkillCategory[] = [
       "Linux",
       "Agile/Scrum",
     ],
-    related: ["dataeng"],
+    related: ["dataeng", "aitools"],
+  },
+  {
+    key: "aitools",
+    label: "AI-Assisted Development",
+    skills: ["Claude Code", "GitHub Copilot", "Amazon Q", "Cursor", "Antigravity"],
+    related: ["tools"],
   },
   {
     key: "dataeng",
